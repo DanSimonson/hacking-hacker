@@ -1,10 +1,28 @@
 <template>
   <div>
-    <div v-for="story in stories" :key="story.id">
-      <span id="score">Score: {{ story.data.score }}</span>
-      <a :href="story.data.url"><h2>{{ story.data.title }}</h2></a>
-      <p>Type: {{ story.data.type }}</p>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody v-for="story in stories" :key="story.id">
+              <tr>
+                <td><span id="score">{{ story.data.score }} points</span></td>
+                <td><a :href="story.data.url"><h2>{{ story.data.title }}</h2></a></td>
+              </tr>
+              <tr>
+                <td>by {{ story.data.by }}</td>
+                <router-link :to="{ path: '/story/' + story.data.id }">
+                  <td>{{ story.data.descendants }} comments</td>
+                </router-link>
+              </tr>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -27,8 +45,6 @@
             axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json')
               .then((result) => {
                 this.stories.push(result)
-                this.hrefLink = result.data.url
-                console.log(this.hrefLink)
               })
               .catch((err) => {
                 console.log(err)
