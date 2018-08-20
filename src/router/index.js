@@ -16,5 +16,6 @@ export default new Router({
       name: "Single",
       component: Single
     }
-  ]
+  ],
+  mode: "history"
 });

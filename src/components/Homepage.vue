@@ -7,7 +7,7 @@
             <tbody v-for="story in stories" :key="story.id">
               <tr>
                 <td><span id="score">{{ story.data.score }} points</span></td>
-                <td><a :href="story.data.url"><h2>{{ story.data.title }}</h2></a></td>
+                <td><a style="text-decoration:none;" :href="story.data.url"><h2>{{ story.data.title }}</h2></a></td>
               </tr>
               <tr>
                 <td>by {{ story.data.by }}</td>
@@ -34,10 +34,13 @@
       return {
         err: '',
         stories: [],
-        hrefLink: ''
+        //stories: this.$store.topStories
       }
     },
     created: function () {
+      //if (this.$store.state.topStories.length === 0) this.$store.dispatch('fetch_top_stories')
+      //this.$store.dispatch('fetch_top_stories')
+
       axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
         .then((result) => {
           this.results = result.data.slice(0, 10)
@@ -52,8 +55,6 @@
           })
         })
         .catch((err) => { this.err = err })
-
-
     }
   }
 </script>

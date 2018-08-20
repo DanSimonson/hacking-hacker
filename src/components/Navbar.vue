@@ -1,11 +1,12 @@
 <template>
     <div class="pure-menu pure-menu-horizontal">
         <div class="container">
-            <a href="#" class="pure-menu-heading pure-menu-link">Home</a>
+            <router-link style="text-decoration:none;" :to="{ path: '/' }" class="pure-menu-heading pure-menu-link">Hacking-Hacker
+                News
+            </router-link>
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">News</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
+                <!--<router-link :to="{ path: '/' }" class="pure-menu-heading pure-menu-link">Hacking-Hacker News</router-link>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Hacking-Hacker News</a></li>-->
             </ul>
         </div>
     </div>
@@ -20,6 +21,10 @@
 <style scoped>
     .pure-menu {
         background-color: #E17842;
+    }
+
+    .pure-menu a[data-v-9ddb17c0]:hover {
+        background-color: aqua;
     }
 
     .pure-menu a {

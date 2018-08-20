@@ -3,17 +3,19 @@
         <h2>{{ story.title }}</h2>
         <p>Score: {{ story.score }}</p>
         <a :href="story.url" target="_blank"><p>{{ story.url }}</p></a>
-        <div v-for="comment in comments" :key="comment.id">
+        <!--<div v-for="comment in comments" :key="comment.id">-->
+        <div v-for="(comment, index) in comments">
             <div class="comment-wrap">
                 <div class="comment-block">
-                    <p class="comment-text">{{ comment.text }}</p>
+                    <div v-html="legacySystemHTML[index]">
+                    </div>
+                    <!--<p class="comment-text">{{ comment.text }}</p>-->
                     <div class="bottom-comment">
                         <div class="comment-author">{{ comment.by }}</div>
                         <div class="comment-date">{{ comment.time }}</div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -24,11 +26,15 @@
         name: 'Single',
         data() {
             return {
-                story: {},
+                legacySystemHTML: [],
+                story: [],
                 comments: []
             }
+
+
         },
         created: function () {
+
             axios.get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.id + '.json')
                 .then((res) => {
                     this.story = res.data
@@ -37,24 +43,31 @@
                         axios.get('https://hacker-news.firebaseio.com/v0/item/' + id + '.json')
                             .then((res) => {
                                 this.$nextTick(() => {
-                                    //console.log(res.data)
                                     this.comments.push(res.data)
+                                    this.legacySystemHTML.push(res.data.text)
                                 })
                             })
                             .catch((err) => {
                                 console.log(err)
                             })
+
                     })
                 })
                 .catch((err) => {
+                    //console.log(this.comments)
                     console.log(err)
                 })
+
         }
 
     }
 </script>
 
 <style scoped>
+    li a {
+        text-decoration: none;
+    }
+
     .comment-wrap {
         margin-bottom: 1.25rem;
         display: table;
