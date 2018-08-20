@@ -30,11 +30,8 @@
                 story: [],
                 comments: []
             }
-
-
         },
         created: function () {
-
             axios.get('https://hacker-news.firebaseio.com/v0/item/' + this.$route.params.id + '.json')
                 .then((res) => {
                     this.story = res.data

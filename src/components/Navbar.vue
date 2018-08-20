@@ -1,8 +1,8 @@
 <template>
     <div class="pure-menu pure-menu-horizontal">
         <div class="container">
-            <router-link style="text-decoration:none;" :to="{ path: '/' }" class="pure-menu-heading pure-menu-link">Hacking-Hacker
-                News
+            <router-link style="text-decoration:none;" :to="{ path: '/' }" class="pure-menu-heading pure-menu-link">Hacking
+                Hacker News
             </router-link>
             <ul class="pure-menu-list">
                 <!--<router-link :to="{ path: '/' }" class="pure-menu-heading pure-menu-link">Hacking-Hacker News</router-link>
